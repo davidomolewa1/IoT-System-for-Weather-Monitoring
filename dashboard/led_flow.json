@@ -1,0 +1,337 @@
+[
+    {
+        "id": "0913f7ebba455e49",
+        "type": "tab",
+        "label": "ESP8266 Set LED2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "294f4db77a572a9c",
+        "type": "change",
+        "z": "0913f7ebba455e49",
+        "name": "Set LED Blue",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"red\":0,\"green\":0,\"blue\":255}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 60,
+        "wires": [
+            [
+                "fed2ca4d8f7afe08"
+            ]
+        ]
+    },
+    {
+        "id": "d849e47bdb465e99",
+        "type": "switch",
+        "z": "0913f7ebba455e49",
+        "name": "",
+        "property": "payload.d.temp",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "btwn",
+                "v": "0",
+                "vt": "num",
+                "v2": "10",
+                "v2t": "num"
+            },
+            {
+                "t": "btwn",
+                "v": "10",
+                "vt": "num",
+                "v2": "25",
+                "v2t": "num"
+            },
+            {
+                "t": "btwn",
+                "v": "25",
+                "vt": "num",
+                "v2": "30",
+                "v2t": "num"
+            },
+            {
+                "t": "gte",
+                "v": "30",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 5,
+        "x": 450,
+        "y": 140,
+        "wires": [
+            [
+                "294f4db77a572a9c"
+            ],
+            [
+                "d883c17fd496a441"
+            ],
+            [
+                "540c86ba59d3be1f"
+            ],
+            [
+                "e4afc225b8458893"
+            ],
+            [
+                "2a8df6d7e222352c"
+            ]
+        ]
+    },
+    {
+        "id": "d883c17fd496a441",
+        "type": "change",
+        "z": "0913f7ebba455e49",
+        "name": "Set LED Turquoise",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"red\":0,\"green\":150,\"blue\":150}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 650,
+        "y": 100,
+        "wires": [
+            [
+                "fed2ca4d8f7afe08"
+            ]
+        ]
+    },
+    {
+        "id": "540c86ba59d3be1f",
+        "type": "change",
+        "z": "0913f7ebba455e49",
+        "name": "Set LED Green",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"red\" : 0, \"green\" : 255, \"blue\" : 0 }",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 140,
+        "wires": [
+            [
+                "fed2ca4d8f7afe08"
+            ]
+        ]
+    },
+    {
+        "id": "e4afc225b8458893",
+        "type": "change",
+        "z": "0913f7ebba455e49",
+        "name": "Set LED Yellow",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"red\" : 150, \"green\" : 150, \"blue\" : 0 }",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 180,
+        "wires": [
+            [
+                "fed2ca4d8f7afe08"
+            ]
+        ]
+    },
+    {
+        "id": "2a8df6d7e222352c",
+        "type": "change",
+        "z": "0913f7ebba455e49",
+        "name": "Set LED RED",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"red\" : 255, \"green\" : 0, \"blue\" : 0 }",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 220,
+        "wires": [
+            [
+                "fed2ca4d8f7afe08"
+            ]
+        ]
+    },
+    {
+        "id": "4ef9494e80b5e9a8",
+        "type": "debug",
+        "z": "0913f7ebba455e49",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1090,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "b344fbf1d91f4ec2",
+        "type": "debug",
+        "z": "0913f7ebba455e49",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "6f22722f541c804b",
+        "type": "mqtt in",
+        "z": "0913f7ebba455e49",
+        "name": "",
+        "topic": "d:hwu.b31ot.h00455187/evt/status/fmt/json",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "816782c0294490d1",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 200,
+        "y": 140,
+        "wires": [
+            [
+                "d849e47bdb465e99",
+                "b344fbf1d91f4ec2"
+            ]
+        ]
+    },
+    {
+        "id": "8f2c6aba2f8a957b",
+        "type": "mqtt out",
+        "z": "0913f7ebba455e49",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "816782c0294490d1",
+        "x": 1090,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "fed2ca4d8f7afe08",
+        "type": "change",
+        "z": "0913f7ebba455e49",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "d:hwu.b31ot.h00455187/cmd/led",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 140,
+        "wires": [
+            [
+                "4ef9494e80b5e9a8",
+                "8f2c6aba2f8a957b"
+            ]
+        ]
+    },
+    {
+        "id": "816782c0294490d1",
+        "type": "mqtt-broker",
+        "name": "DAVID2",
+        "broker": "broker.mqtt.cool",
+        "port": "1883",
+        "clientid": "hwu.david.3",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
