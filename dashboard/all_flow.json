@@ -1,0 +1,1273 @@
+[
+    {
+        "id": "27aa2877.e08a5",
+        "type": "tab",
+        "label": "ESP8266 Set LED",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1b32dddf.4c5aea",
+        "type": "mqtt out",
+        "z": "27aa2877.e08a5",
+        "name": "OUTPUT_LED",
+        "topic": "d:hwu.b31ot.h00455187/cmd/led",
+        "qos": "2",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "816782c0294490d1",
+        "x": 760,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "2c5c259e859f5e9c",
+        "type": "mqtt in",
+        "z": "27aa2877.e08a5",
+        "name": "INPUT_TEMP_HUMID",
+        "topic": "d:hwu.b31ot.h00455187/evt/status/fmt/json",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "816782c0294490d1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 440,
+        "wires": [
+            [
+                "9f4fc779afa688f7",
+                "beb5228226ae5fdb",
+                "e3ea9ee6492282ec",
+                "f3c28c93547c4979"
+            ]
+        ]
+    },
+    {
+        "id": "9f4fc779afa688f7",
+        "type": "debug",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "6038e95bdb469413",
+        "type": "template",
+        "z": "27aa2877.e08a5",
+        "name": "Alert Msg",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Temperature is high: {{payload.d.temp}} !",
+        "output": "str",
+        "x": 640,
+        "y": 640,
+        "wires": [
+            [
+                "03d4619e2838311c"
+            ]
+        ]
+    },
+    {
+        "id": "03d4619e2838311c",
+        "type": "ui_toast",
+        "z": "27aa2877.e08a5",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 910,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f1d99e9ecc34c204",
+        "type": "mqtt in",
+        "z": "27aa2877.e08a5",
+        "name": "INPUT_LED",
+        "topic": "\"d:hwu.b31ot.h00455187/cmd/led\"",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "816782c0294490d1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 820,
+        "wires": [
+            [
+                "fdb98f84a7400299",
+                "046983a7e5209bab",
+                "2a0b61ddddb0f71f",
+                "eaec153108d2e433"
+            ]
+        ]
+    },
+    {
+        "id": "046983a7e5209bab",
+        "type": "ui_button",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "group": "93982afc5b55eeba",
+        "order": 7,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Red Button",
+        "tooltip": "",
+        "color": "red",
+        "bgcolor": "transparent",
+        "className": "buttons",
+        "icon": "radio_button_checked",
+        "payload": "{\"red\":255,\"green\":0,\"blue\":0}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 490,
+        "y": 880,
+        "wires": [
+            [
+                "1b32dddf.4c5aea"
+            ]
+        ]
+    },
+    {
+        "id": "2a0b61ddddb0f71f",
+        "type": "ui_button",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "group": "93982afc5b55eeba",
+        "order": 9,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Green Button",
+        "tooltip": "",
+        "color": "green",
+        "bgcolor": "transparent",
+        "className": "",
+        "icon": "radio_button_checked",
+        "payload": "{\"red\":0,\"green\":255,\"blue\":0}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 490,
+        "y": 940,
+        "wires": [
+            [
+                "1b32dddf.4c5aea"
+            ]
+        ]
+    },
+    {
+        "id": "eaec153108d2e433",
+        "type": "ui_button",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "group": "93982afc5b55eeba",
+        "order": 11,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Blue Button",
+        "tooltip": "",
+        "color": "blue",
+        "bgcolor": "transparent",
+        "className": "",
+        "icon": "radio_button_checked",
+        "payload": "{\"red\":0,\"green\":0,\"blue\":255}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 490,
+        "y": 1000,
+        "wires": [
+            [
+                "1b32dddf.4c5aea"
+            ]
+        ]
+    },
+    {
+        "id": "fdb98f84a7400299",
+        "type": "debug",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "34d79123cb9df711",
+        "type": "function",
+        "z": "27aa2877.e08a5",
+        "name": "Format Time Series DB record",
+        "func": "msg.payload = {\n        time:     new Date().getTime(),\n        temp:     msg.payload.d.temp,\n        humidity: msg.payload.d.humidity\n    } ;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 1180,
+        "wires": [
+            [
+                "b39987e5cf625033",
+                "0416d5c37a311cdf"
+            ]
+        ]
+    },
+    {
+        "id": "b39987e5cf625033",
+        "type": "debug",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "841f541856ddc464",
+        "type": "mqtt in",
+        "z": "27aa2877.e08a5",
+        "name": "INPUT_STORE",
+        "topic": "d:hwu.b31ot.h00455187/evt/status/fmt/json",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "816782c0294490d1",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 140,
+        "y": 1180,
+        "wires": [
+            [
+                "34d79123cb9df711"
+            ]
+        ]
+    },
+    {
+        "id": "0416d5c37a311cdf",
+        "type": "mongodb out",
+        "z": "27aa2877.e08a5",
+        "mongodb": "092984f89463e151",
+        "name": "SAVE_MONGODB_DATA",
+        "collection": "SensorData",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "store",
+        "x": 790,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "29553fe58169a597",
+        "type": "debug",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1170,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "9a2406038dedc131",
+        "type": "function",
+        "z": "27aa2877.e08a5",
+        "name": "Create a Chart Array for Chart.js",
+        "func": "// This function reformats the timeseries data into an array that \n// Chart.js (See http://www.chartjs.org/ ) will plot\n// The node-red-dashboard Chart node uses Chart.js \n\nvar starttime = flow.get(\"start-time\");\nvar endtime = flow.get(\"end-time\");\n\nif( msg.payload.length === 0 ) {\n    // The historical database does not contain values for this date range \n    // Reset the chart with a blank array\n    msg.payload = [] ;\n    return msg;\n}\n\n// The Array has this structure, inserting the first element as a template.\nvar ChartData = [ {\"series\":[\"Data\"],\n                   \"data\":[[{\"x\":msg.payload[0].time,\"y\":msg.payload[0].temp}]],\n                   \"labels\":[\"Data\"]}];\n\n// Start at 1 because we've already added element 0 in the initial array definition\nfor( var i=1; i < msg.payload.length; i++ ) {\n    if( (msg.payload[i].time >= starttime) && (msg.payload[i].time <= endtime) ) {\n        // This temperature reading is within the Date Range\n        ChartData[0].data[0].push( { \"x\":msg.payload[i].time,\"y\":msg.payload[i].temp } );\n    }    \n}\n// Now we need to sort on the time so that we give the Chart node an array in time order\nChartData[0].data[0].sort(function sortNumber(a,b) { return a.x - b.x; });\n\nmsg.payload = ChartData;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 1440,
+        "wires": [
+            [
+                "29553fe58169a597",
+                "6c2c05588f0cee7b"
+            ]
+        ]
+    },
+    {
+        "id": "2eb7924f0010d566",
+        "type": "debug",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "eefe980e741b3863",
+        "type": "ui_button",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "group": "93982afc5b55eeba",
+        "order": 15,
+        "width": 14,
+        "height": 1,
+        "passthru": false,
+        "label": "Load ESP 32 DHT History Data",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 190,
+        "y": 1440,
+        "wires": [
+            [
+                "ba64cfa7635d235a"
+            ]
+        ]
+    },
+    {
+        "id": "fcf5f6da5f37f16b",
+        "type": "comment",
+        "z": "27aa2877.e08a5",
+        "name": "Select Date Range",
+        "info": "",
+        "x": 270,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "27c09c898b8381db",
+        "type": "ui_date_picker",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "label": "Start Date",
+        "group": "93982afc5b55eeba",
+        "order": 13,
+        "width": 7,
+        "height": 1,
+        "passthru": true,
+        "topic": "",
+        "topicType": "str",
+        "className": "",
+        "x": 430,
+        "y": 1580,
+        "wires": [
+            [
+                "6df4f76797589736"
+            ]
+        ]
+    },
+    {
+        "id": "8923ce705883816d",
+        "type": "ui_date_picker",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "label": "End Date",
+        "group": "93982afc5b55eeba",
+        "order": 14,
+        "width": 7,
+        "height": 1,
+        "passthru": true,
+        "topic": "",
+        "topicType": "str",
+        "className": "",
+        "x": 430,
+        "y": 1620,
+        "wires": [
+            [
+                "20ccc71059a69546"
+            ]
+        ]
+    },
+    {
+        "id": "1ac440f4e7eef5e7",
+        "type": "debug",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "39dca4e5234fe36b",
+        "type": "debug",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 820,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "764e5cccc450bdfd",
+        "type": "change",
+        "z": "27aa2877.e08a5",
+        "name": "Start Date",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1451624400000",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 270,
+        "y": 1580,
+        "wires": [
+            [
+                "27c09c898b8381db"
+            ]
+        ]
+    },
+    {
+        "id": "fd89c349d38497bf",
+        "type": "change",
+        "z": "27aa2877.e08a5",
+        "name": "End Date",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1577750401000",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 270,
+        "y": 1620,
+        "wires": [
+            [
+                "8923ce705883816d"
+            ]
+        ]
+    },
+    {
+        "id": "6df4f76797589736",
+        "type": "change",
+        "z": "27aa2877.e08a5",
+        "name": "Start Time Range",
+        "rules": [
+            {
+                "t": "set",
+                "p": "start-time",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 620,
+        "y": 1580,
+        "wires": [
+            [
+                "1ac440f4e7eef5e7"
+            ]
+        ]
+    },
+    {
+        "id": "20ccc71059a69546",
+        "type": "change",
+        "z": "27aa2877.e08a5",
+        "name": "End Time Range",
+        "rules": [
+            {
+                "t": "set",
+                "p": "end-time",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 1620,
+        "wires": [
+            [
+                "39dca4e5234fe36b"
+            ]
+        ]
+    },
+    {
+        "id": "abaf525cea14f5ff",
+        "type": "inject",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 130,
+        "y": 1600,
+        "wires": [
+            [
+                "fd89c349d38497bf",
+                "764e5cccc450bdfd"
+            ]
+        ]
+    },
+    {
+        "id": "ba64cfa7635d235a",
+        "type": "mongodb in",
+        "z": "27aa2877.e08a5",
+        "mongodb": "092984f89463e151",
+        "name": "Recieve_MongoDB_Data",
+        "collection": "SensorData",
+        "operation": "find",
+        "x": 470,
+        "y": 1440,
+        "wires": [
+            [
+                "9a2406038dedc131",
+                "2eb7924f0010d566"
+            ]
+        ]
+    },
+    {
+        "id": "6c2c05588f0cee7b",
+        "type": "ui_chart",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "group": "93982afc5b55eeba",
+        "order": 6,
+        "width": 14,
+        "height": 3,
+        "label": "Temperature History",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "50",
+        "removeOlder": "24",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1160,
+        "y": 1420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6fed1f65273d888a",
+        "type": "switch",
+        "z": "27aa2877.e08a5",
+        "name": "Secs >= 0",
+        "property": "payload.Seconds",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 1840,
+        "wires": [
+            [
+                "9beaec0742eebd55"
+            ]
+        ]
+    },
+    {
+        "id": "9beaec0742eebd55",
+        "type": "change",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"Interval\":msg.payload.Seconds}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 1840,
+        "wires": [
+            [
+                "28dea2248da9cac0",
+                "1627fbab698a84b1"
+            ]
+        ]
+    },
+    {
+        "id": "28dea2248da9cac0",
+        "type": "debug",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 1810,
+        "wires": []
+    },
+    {
+        "id": "1627fbab698a84b1",
+        "type": "mqtt out",
+        "z": "27aa2877.e08a5",
+        "name": "OUTPUT_INTERVAL",
+        "topic": "d:hwu.b31ot.h00455187/cmd/report_interval/fmt/json",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "816782c0294490d1",
+        "x": 760,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "df8ca3bdd8d5fab1",
+        "type": "ui_form",
+        "z": "27aa2877.e08a5",
+        "name": "Dashboard Form",
+        "label": "",
+        "group": "93982afc5b55eeba",
+        "order": 12,
+        "width": 14,
+        "height": 1,
+        "options": [
+            {
+                "label": "Reporting Interval (seconds)",
+                "value": "Seconds",
+                "type": "number",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "Seconds": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 150,
+        "y": 1840,
+        "wires": [
+            [
+                "6fed1f65273d888a"
+            ]
+        ]
+    },
+    {
+        "id": "f03d7a9a9c43b7b6",
+        "type": "ui_chart",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "group": "93982afc5b55eeba",
+        "order": 3,
+        "width": 7,
+        "height": 3,
+        "label": "Temperature Chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "50",
+        "removeOlder": "20",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 890,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "89af7d22b7aa62ef",
+        "type": "ui_chart",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "group": "93982afc5b55eeba",
+        "order": 5,
+        "width": 7,
+        "height": 3,
+        "label": "Humidity Chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": "20",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 900,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "35d0b8e9cd6b55e5",
+        "type": "mqtt in",
+        "z": "27aa2877.e08a5",
+        "name": "INPUT_TEMP_HUMID",
+        "topic": "d:hwu.b31ot.h00455187/evt/status/fmt/json",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "816782c0294490d1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 120,
+        "wires": [
+            [
+                "9f8274d6f06989c2",
+                "b424679968f00a2a",
+                "3ff719a1ba3da669"
+            ]
+        ]
+    },
+    {
+        "id": "60227730e03f1417",
+        "type": "ui_gauge",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "group": "93982afc5b55eeba",
+        "order": 2,
+        "width": 7,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#2020ee",
+            "#00dc00",
+            "#fb1818"
+        ],
+        "seg1": "10",
+        "seg2": "25",
+        "diff": false,
+        "className": "",
+        "x": 650,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "5ea561746e9ee6dc",
+        "type": "ui_gauge",
+        "z": "27aa2877.e08a5",
+        "name": "",
+        "group": "93982afc5b55eeba",
+        "order": 4,
+        "width": 7,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 660,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "9f8274d6f06989c2",
+        "type": "debug",
+        "z": "27aa2877.e08a5",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "b424679968f00a2a",
+        "type": "change",
+        "z": "27aa2877.e08a5",
+        "name": "Temperature",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.d.temp",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 180,
+        "wires": [
+            [
+                "60227730e03f1417"
+            ]
+        ]
+    },
+    {
+        "id": "3ff719a1ba3da669",
+        "type": "change",
+        "z": "27aa2877.e08a5",
+        "name": "Humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.d.humidity",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 240,
+        "wires": [
+            [
+                "5ea561746e9ee6dc"
+            ]
+        ]
+    },
+    {
+        "id": "beb5228226ae5fdb",
+        "type": "change",
+        "z": "27aa2877.e08a5",
+        "name": "Temperature",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.d.temp",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 500,
+        "wires": [
+            [
+                "f03d7a9a9c43b7b6"
+            ]
+        ]
+    },
+    {
+        "id": "e3ea9ee6492282ec",
+        "type": "change",
+        "z": "27aa2877.e08a5",
+        "name": "Humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.d.humidity",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 560,
+        "wires": [
+            [
+                "89af7d22b7aa62ef"
+            ]
+        ]
+    },
+    {
+        "id": "f3c28c93547c4979",
+        "type": "switch",
+        "z": "27aa2877.e08a5",
+        "name": "Warn on High Value",
+        "property": "payload.d.temp",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "30",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 380,
+        "y": 640,
+        "wires": [
+            [
+                "6038e95bdb469413"
+            ]
+        ]
+    },
+    {
+        "id": "3d02a28c2faf606d",
+        "type": "comment",
+        "z": "27aa2877.e08a5",
+        "name": "FOR STORING DATA IN MONGODB",
+        "info": "",
+        "x": 210,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "1c46c4396bbcab07",
+        "type": "comment",
+        "z": "27aa2877.e08a5",
+        "name": "FOR UPDATING INTERVAL",
+        "info": "",
+        "x": 180,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "3123bfe3b40b6225",
+        "type": "comment",
+        "z": "27aa2877.e08a5",
+        "name": "TEMPERATURE AND HUMIDITY GAUGE",
+        "info": "",
+        "x": 220,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "95f9d93e4a15e93c",
+        "type": "comment",
+        "z": "27aa2877.e08a5",
+        "name": "TEMPERATURE AND HUMIDITY CHART",
+        "info": "",
+        "x": 220,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d9c42331cccf4c25",
+        "type": "comment",
+        "z": "27aa2877.e08a5",
+        "name": "CHANGE LED COLOUR USING NODE-RED BUTTON",
+        "info": "",
+        "x": 260,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "2a28f14971275a74",
+        "type": "comment",
+        "z": "27aa2877.e08a5",
+        "name": "FETCHING AND DISPLAYING HISTORY OF STORED DATA FROM MONGODB",
+        "info": "",
+        "x": 340,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "db28dbfe266dab66",
+        "type": "ui_text",
+        "z": "27aa2877.e08a5",
+        "group": "93982afc5b55eeba",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "IOT SYSTEM FOR WEATHER MONITORING",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "style": true,
+        "font": "Arial Black,Arial Black,Gadget,sans-serif",
+        "fontSize": "25",
+        "color": "#097479",
+        "x": 240,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "2f14054dc92a9231",
+        "type": "ui_spacer",
+        "z": "27aa2877.e08a5",
+        "name": "spacer",
+        "group": "93982afc5b55eeba",
+        "order": 8,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "b8b140ac239e7edc",
+        "type": "ui_spacer",
+        "z": "27aa2877.e08a5",
+        "name": "spacer",
+        "group": "93982afc5b55eeba",
+        "order": 10,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "816782c0294490d1",
+        "type": "mqtt-broker",
+        "name": "DAVID2",
+        "broker": "broker.mqtt.cool",
+        "port": "1883",
+        "clientid": "hwu.david.3",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "93982afc5b55eeba",
+        "type": "ui_group",
+        "name": "ESP32_ASSIGNMENT_FINAL",
+        "tab": "a9c15e15ae69b64b",
+        "order": 1,
+        "disp": false,
+        "width": "14",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "092984f89463e151",
+        "type": "mongodb",
+        "hostname": "127.0.0.1",
+        "topology": "direct",
+        "connectOptions": "",
+        "port": "27017",
+        "db": "DataValues",
+        "name": ""
+    },
+    {
+        "id": "a9c15e15ae69b64b",
+        "type": "ui_tab",
+        "name": "SET_LED",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
