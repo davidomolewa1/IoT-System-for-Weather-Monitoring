@@ -37,8 +37,10 @@ This project demonstrates an IoT system using ESP32 and a DHT11 sensor to monito
    - Upload `esp_32_environmental_monitoring.ino` file to your ESP32.
    
    **Arduino Code**: [Code](src/esp32_weather_monitoring_code/esp32_weather_monitoring_code.ino)
-
-6. **Run Node-RED Dashboard**:
+6. **Run MongoDB**:
+   - Install MongoDB Community Edition on your PC and launch it.
+  
+7. **Run Node-RED Dashboard**:
    - Launch Node-Red
    - Install the following modules from the manage palette `node-red-node-mongodb`version 0.2.5, `node-red-dashboard`, `node-red-contrib-mqtt-broker`.
    - Import the dashboard flow JSON files provided.
